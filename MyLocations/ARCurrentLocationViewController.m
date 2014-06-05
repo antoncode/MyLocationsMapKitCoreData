@@ -40,20 +40,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     [self updateLabels];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self configureGetButton];
 }
 
 - (IBAction)getLocation:(id)sender
 {
     [self startLocationManager];
     [self updateLabels];
+    [self configureGetButton];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -71,6 +66,7 @@
     [self stopLocationManager];
     _lastLocationError = error;
     [self updateLabels];
+    [self configureGetButton];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
@@ -94,18 +90,23 @@
         if (newLocation.horizontalAccuracy <= _locationManager.desiredAccuracy) {
             NSLog(@"*** We're done!");
             [self stopLocationManager];
+            [self configureGetButton];
         }
     }
 }
+
+#pragma mark - Helper methods
 
 - (void)updateLabels
 {
     if (_location != nil) {
         self.latitudeLabel.text = [NSString stringWithFormat: @"%.8f", _location.coordinate.latitude];
-        self.longitudeLabel.text = [NSString stringWithFormat: @"%.8f", _location.coordinate.longitude]; self.tagButton.hidden = NO;
+        self.longitudeLabel.text = [NSString stringWithFormat: @"%.8f", _location.coordinate.longitude];
+        self.tagButton.hidden = NO;
         self.messageLabel.text = @"";
     } else {
-        self.latitudeLabel.text = @""; self.longitudeLabel.text = @"";
+        self.latitudeLabel.text = @"";
+        self.longitudeLabel.text = @"";
         self.addressLabel.text = @"";
         self.tagButton.hidden = YES;
         
@@ -124,6 +125,16 @@
         }
         
         self.messageLabel.text = statusMessage;
+    }
+}
+
+- (void)configureGetButton {
+    if (_updatingLocation) {
+        [self.getButton setTitle:@"Stop"
+                        forState:UIControlStateNormal];
+    } else {
+        [self.getButton setTitle:@"Get My Location"
+                        forState:UIControlStateNormal];
     }
 }
 
