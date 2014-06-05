@@ -46,7 +46,14 @@
 
 - (IBAction)getLocation:(id)sender
 {
-    [self startLocationManager];
+    if (_updatingLocation) {
+        [self stopLocationManager];
+    } else {
+        _location = nil;
+        _lastLocationError = nil;
+        [self startLocationManager];
+    }
+    
     [self updateLabels];
     [self configureGetButton];
 }
