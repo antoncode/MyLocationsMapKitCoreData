@@ -78,9 +78,24 @@
     CLLocation *newLocation = [locations lastObject];
     NSLog(@"didUpdateLocations %@", newLocation);
     
-    _lastLocationError = nil;
-    _location = newLocation;
-    [self updateLabels];
+    if ([newLocation.timestamp timeIntervalSinceNow] < -5.0) {
+        return;
+    }
+    
+    if (newLocation.horizontalAccuracy < 0) {
+        return;
+    }
+    
+    if (_location == nil || _location.horizontalAccuracy > newLocation.horizontalAccuracy) {
+        _lastLocationError = nil;
+        _location = newLocation;
+        [self updateLabels];
+        
+        if (newLocation.horizontalAccuracy <= _locationManager.desiredAccuracy) {
+            NSLog(@"*** We're done!");
+            [self stopLocationManager];
+        }
+    }
 }
 
 - (void)updateLabels
