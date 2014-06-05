@@ -22,6 +22,17 @@
 @end
 
 @implementation ARCurrentLocationViewController
+{
+    CLLocationManager *_locationManager;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ((self = [super initWithCoder:aDecoder])) {
+        _locationManager = [[CLLocationManager alloc] init];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -37,7 +48,37 @@
 
 - (IBAction)getLocation:(id)sender
 {
-    // do nothing yet
+    _locationManager.delegate = self;
+    _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+    [_locationManager startUpdatingLocation];
 }
 
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    // kclErrorDenied - User didn't allow us to use their current location
+    NSLog(@"didFailWithError %@", error);
+}
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    CLLocation *newLocation = [locations lastObject];
+    NSLog(@"didUpdateLocations %@", newLocation);
+}
+    
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

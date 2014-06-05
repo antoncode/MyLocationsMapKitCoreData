@@ -22,6 +22,7 @@
 		3A7E4F3A193EECEC00A1E24A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3A7E4F38193EECEC00A1E24A /* InfoPlist.strings */; };
 		3A7E4F3C193EECEC00A1E24A /* MyLocationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A7E4F3B193EECEC00A1E24A /* MyLocationsTests.m */; };
 		3ADB0E64193EF28A00C03870 /* ARCurrentLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADB0E63193EF28A00C03870 /* ARCurrentLocationViewController.m */; };
+		3ADB0E661940CA5F00C03870 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3ADB0E651940CA5F00C03870 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		3A7E4F3B193EECEC00A1E24A /* MyLocationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyLocationsTests.m; sourceTree = "<group>"; };
 		3ADB0E62193EF28A00C03870 /* ARCurrentLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCurrentLocationViewController.h; sourceTree = "<group>"; };
 		3ADB0E63193EF28A00C03870 /* ARCurrentLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCurrentLocationViewController.m; sourceTree = "<group>"; };
+		3ADB0E651940CA5F00C03870 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADB0E661940CA5F00C03870 /* CoreLocation.framework in Frameworks */,
 				3A7E4F10193EECEB00A1E24A /* CoreGraphics.framework in Frameworks */,
 				3A7E4F12193EECEB00A1E24A /* UIKit.framework in Frameworks */,
 				3A7E4F0E193EECEB00A1E24A /* Foundation.framework in Frameworks */,
@@ -104,6 +107,7 @@
 		3A7E4F0C193EECEB00A1E24A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3ADB0E651940CA5F00C03870 /* CoreLocation.framework */,
 				3A7E4F0D193EECEB00A1E24A /* Foundation.framework */,
 				3A7E4F0F193EECEB00A1E24A /* CoreGraphics.framework */,
 				3A7E4F11193EECEB00A1E24A /* UIKit.framework */,
