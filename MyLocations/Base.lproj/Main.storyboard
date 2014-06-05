@@ -62,6 +62,9 @@
                                 <state key="normal" title="Get My Location">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="getLocation:" destination="CZ4-MO-1fc" eventType="touchUpInside" id="97p-RM-fld"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
