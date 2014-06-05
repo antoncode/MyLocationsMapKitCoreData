@@ -24,6 +24,7 @@
 @implementation ARCurrentLocationViewController
 {
     CLLocationManager *_locationManager;
+    CLLocation *_location;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -37,7 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+
+    [self updateLabels];
 }
 
 - (void)didReceiveMemoryWarning
@@ -64,8 +66,24 @@
 {
     CLLocation *newLocation = [locations lastObject];
     NSLog(@"didUpdateLocations %@", newLocation);
-}
     
+    _location = newLocation;
+    [self updateLabels];
+}
+
+- (void)updateLabels {
+    if (_location != nil) {
+        self.latitudeLabel.text = [NSString stringWithFormat: @"%.8f", _location.coordinate.latitude];
+        self.longitudeLabel.text = [NSString stringWithFormat: @"%.8f", _location.coordinate.longitude]; self.tagButton.hidden = NO;
+        self.messageLabel.text = @"";
+    } else {
+        self.latitudeLabel.text = @""; self.longitudeLabel.text = @"";
+        self.addressLabel.text = @"";
+        self.tagButton.hidden = YES;
+        self.messageLabel.text = @"Press the Button to Start";
+    }
+}
+
 @end
 
 
